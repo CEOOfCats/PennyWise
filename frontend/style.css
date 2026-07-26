@@ -1,0 +1,362 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+    background-color: #f5f6f8;
+    color: #1f2937;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+    line-height: 1.5;
+}
+
+h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #e2e5ea;
+    margin: 32px 0;
+}
+
+#Logout_Btn {
+    background-color: #ef4444;
+    color: #ffffff;
+    font-size: 0.8rem;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* ---------- Stats search ---------- */
+
+#Stats_Search {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+#Stats_Search legend {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 14px;
+}
+
+.stats-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.stats-row + .stats-row {
+    margin-top: 16px;
+}
+
+.stats-row .field {
+    display: flex;
+    flex-direction: column;
+    min-width: 160px;
+}
+
+.stats-row label {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+.stats-row .result {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #1f2937;
+}
+
+/* ---------- Table + Sort row ---------- */
+
+#Table_Row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+#Table_Row table {
+    flex: 1;
+    min-width: 0;
+}
+
+#Table_Row #Sort_Form {
+    flex: 0 0 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+    gap: 10px;
+    padding: 16px;
+}
+
+#Table_Row #Sort_Form legend {
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+}
+
+/* ---------- Add/Filter form row ---------- */
+
+#Form_Row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+#Form_Row form {
+    flex: 1;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* ---------- Table ---------- */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    table-layout: fixed;
+}
+
+thead {
+    background-color: #1f2937;
+}
+
+thead th {
+    color: #ffffff;
+    text-align: left;
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+tbody td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eef0f3;
+    font-size: 0.9rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fafbfc;
+}
+
+tbody tr:hover {
+    background-color: #f0f4ff;
+}
+
+/* ---------- Summary bar ---------- */
+
+#Summary {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: inline-flex;
+    gap: 20px;
+}
+
+/* ---------- Forms ---------- */
+
+form {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px 16px;
+    align-items: end;
+}
+
+legend {
+    grid-column: 1 / -1;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 4px;
+    padding: 0;
+}
+
+form label {
+    display: block;
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+form br {
+    display: none;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background: #fff;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* ---------- Buttons ---------- */
+
+button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #3b82f6;
+    color: #ffffff;
+    transition: background-color 0.15s ease;
+    height: fit-content;
+}
+
+button:hover {
+    background-color: #2563eb;
+}
+
+button[type="button"] {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+button[type="button"]:hover {
+    background-color: #d1d5db;
+}
+
+/* Delete/Edit buttons in table rows, targeted by class for reliability */
+tbody .btn-delete {
+    background-color: #ef4444;
+    color: #ffffff;
+    font-size: 1.1rem;
+    line-height: 1;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 6px;
+    margin-right: 6px;
+}
+
+tbody .btn-delete:hover {
+    background-color: #dc2626;
+}
+
+tbody .btn-edit {
+    background-color: #6b7280;
+}
+
+tbody .btn-edit:hover {
+    background-color: #4b5563;
+}
+
+/* ---------- Responsive: stack side-by-side sections on narrow screens ---------- */
+
+@media (max-width: 700px) {
+    #Table_Row, #Form_Row, .stats-row {
+        flex-direction: column;
+    }
+
+    #Table_Row #Sort_Form {
+        flex: 1;
+        width: 100%;
+    }
+}
+
+
+/* ---------- Auth page (login.html) ---------- */
+
+#Auth_Page {
+    max-width: 400px;
+    margin: 80px auto 0;
+    text-align: center;
+}
+
+#Auth_Page h1 {
+    margin-bottom: 32px;
+}
+
+#Auth_Page form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+    gap: 12px;
+}
+ 
+#Auth_Page button[type="submit"] {
+    align-self: stretch;
+}
+
+.switch-text {
+    grid-column: 1 / -1;
+    font-size: 0.85rem;
+    text-align: center;
+    margin: 4px 0 0;
+    color: #6b7280;
+}
+
+.switch-text a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.switch-text a:hover {
+    text-decoration: underline;
+}
+
+.error-text {
+    margin-top: 16px;
+    font-size: 0.9rem;
+    color: #ef4444;
+    font-weight: 500;
+    min-height: 1.2em;
+}
+
+.password-field {
+    display: flex;
+    gap: 8px;
+}
+
+.password-field input {
+    flex: 1;
+}
+
+.toggle-password {
+    flex-shrink: 0;
+    background-color: #e5e7eb;
+    color: #374151;
+    font-size: 0.8rem;
+    padding: 8px 12px;
+}
+
+.toggle-password:hover {
+    background-color: #d1d5db;
+}

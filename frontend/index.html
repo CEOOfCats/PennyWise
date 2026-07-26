@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PennyWise</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1> PennyWise </h1>
+
+    <!-- LOGOUT -->
+    <button type="button" onclick="logout()" id="Logout_Btn">Log Out</button>
+
+    <!-- STATS SEARCH -->
+    <div id="Stats_Search">
+        <legend>Search Totals</legend>
+
+        <div class="stats-row">
+            <div class="field">
+                <label for="Stats_Category">Category</label>
+                <input type="text" id="Stats_Category">
+            </div>
+            <button onclick="searchCategoryTotal()">Get Category Total</button>
+            <span id="Category_Total_Result" class="result"></span>
+        </div>
+
+        <div class="stats-row">
+            <div class="field">
+                <label for="Stats_Start_Date">Start Date</label>
+                <input type="date" id="Stats_Start_Date">
+            </div>
+            <div class="field">
+                <label for="Stats_End_Date">End Date</label>
+                <input type="date" id="Stats_End_Date">
+            </div>
+            <button onclick="searchDateTotal()">Get Date Total</button>
+            <span id="Date_Total_Result" class="result"></span>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- TABLE + SORT -->
+    <div id="Table_Row">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Amount</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Purchase Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody id="Catalog_table">
+
+            </tbody>
+        </table>
+
+        <!-- SORT -->
+        <form id="Sort_Form">
+            <legend>Sort Expenses</legend>
+
+            <label for="Sort_By">Sort By</label>
+            <select id="Sort_By">
+                <option value="">None</option>
+                <option value="price">Price</option>
+                <option value="category">Category</option>
+                <option value="date">Date</option>
+                <option value="amount">Amount</option>
+            </select> <br>
+
+            <label for="Sort_Order">Order</label>
+            <select id="Sort_Order">
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+            </select> <br>
+
+            <button type="submit">Apply Sort</button>
+        </form>
+    </div>
+
+    <!-- TOTAL + COUNT -->
+    <div id="Summary">
+        Total Spending: <span id="Total_Spending">-</span> |
+        Count: <span id="Expense_Count">-</span>
+    </div>
+
+    <hr>
+
+    <!-- ADD/EDIT + FILTER -->
+    <div id="Form_Row">
+        <!-- ADD/EDIT -->
+        <form id="Add_Form">
+
+            <legend id="method">Add an Item</legend>
+
+            <label for="Amount">Amount</label>
+            <input type="number" id="Amount" min="1" required> <br>
+
+            <label for="Price">Price</label>
+            <input type="text" id="Price" required> <br>
+
+            <label for="Category">Category</label>
+            <input type="text" id="Category" min="0" step="0.01" required> <br>
+
+            <label for="Description">Description</label>
+            <input type="text" id="Description" required> <br>
+
+            <label for="Purchase_Date">Purchase Date</label>
+            <input type="date" id="Purchase_Date" required> <br>
+
+            <button type="submit" id="Submit_Btn"> Add Expense </button>
+            <button type="button" onclick="cancelEdit()">Cancel</button>
+        </form>
+
+        <!-- FILTER -->
+        <form id="Filter_Form">
+            <legend>Filter Expenses</legend>
+
+            <label for="Filter_Category">Category</label>
+            <input type="text" id="Filter_Category"> <br>
+
+            <label for="Filter_Min_Price">Min Price</label>
+            <input type="number" id="Filter_Min_Price" step="0.01"> <br>
+
+            <label for="Filter_Max_Price">Max Price</label>
+            <input type="number" id="Filter_Max_Price" step="0.01"> <br>
+
+            <label for="Filter_Start_Date">Start Date</label>
+            <input type="date" id="Filter_Start_Date"> <br>
+
+            <label for="Filter_End_Date">End Date</label>
+            <input type="date" id="Filter_End_Date"> <br>
+
+            <button type="submit">Apply Filters</button>
+            <button type="button" onclick="clearFilters()">Clear</button>
+        </form>
+    </div>
+
+    <script src="script.js"> </script>
+</body>
+</html>
