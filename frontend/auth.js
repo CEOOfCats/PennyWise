@@ -1,4 +1,4 @@
-const base_url = "http://127.0.0.1:8000";
+const base_url = "https://pennywise-jigf.onrender.com";
 
 function togglePassword(inputId, imgId){
     const input = document.getElementById(inputId);
