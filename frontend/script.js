@@ -11,6 +11,48 @@ function logout(){
     window.location.href = "login.html";
 }
 
+async function popup(mode, msg){
+    const popup_box = document.getElementById("popup-box");
+    const popup_msg = document.getElementById("popup-msg");
+    const confirmBtn = document.getElementById("confirm");
+    const cancelBtn = document.getElementById("cancel");
+
+    popup_msg.textContent = msg;
+    popup_box.style.display = "flex";
+
+    return new Promise((resolve) => {
+        confirmBtn.onclick = null;
+        cancelBtn.onclick = null;
+
+        if(mode === "alert"){
+            confirmBtn.textContent = "OK";
+            confirmBtn.style.display = "inline-block";
+            cancelBtn.style.display = "none";
+
+            confirmBtn.onclick = () => {
+                popup_box.style.display = "none";
+                resolve(true);
+            };
+
+        } else{
+            confirmBtn.textContent = "Confirm";
+            confirmBtn.style.display = "inline-block";
+            cancelBtn.textContent = "Cancel";
+            cancelBtn.style.display = "inline-block";
+
+            confirmBtn.onclick = () => {
+                popup_box.style.display = "none";
+                resolve(true);
+            };
+
+            cancelBtn.onclick = () => {
+                popup_box.style.display = "none";
+                resolve(false);
+            };
+        }
+    });
+}
+
 // ONLY FOR START OF SESSION NOT IN BETWEEN
 if(authToken === null){ 
     window.location.href = "login.html";
@@ -27,7 +69,7 @@ async function authFetch(url, options = {}) {
 
     const response = await fetch(url, { ...options, headers });
 
-    if (response.status === 401) {
+    if(response.status === 401){
         sessionStorage.removeItem("access_token");
         window.location.href = "login.html";
         return;
@@ -161,12 +203,12 @@ async function add_item(item){
         await loadCatalog(curr_filters, curr_sort);
         await loadSummary();
     } else{
-        alert("Failed to add expense");
+        await popup("alert", "Failed to add expense");
     } 
 }
 
 async function delete_item(id){
-    if(!confirm("Delete this expense?")) return;
+    if(!(await popup("confirm", "Delete this expense?"))) return;
 
     const response = await authFetch(`${base_url}/expenses/${id}`, {
         method:"DELETE"
@@ -177,7 +219,7 @@ async function delete_item(id){
         await loadCatalog(curr_filters, curr_sort);
         await loadSummary();
     }else{
-        alert("Failed to delete expense");
+        await popup("alert", "Failed to delete expense");
     }     
 }
 
@@ -195,7 +237,7 @@ async function update_item(id, item){
         await loadCatalog(curr_filters, curr_sort);
         await loadSummary();
     } else{
-        alert("Failed to update expense");
+        await popup("alert", "Failed to update expense");
     } 
 }
 
