@@ -1,6 +1,6 @@
 # Pennywise
 
-A full-stack expense tracker built to learn backend API design, authentication, and containerized deployment using docker. Built from scratch (no starter templates) using FastAPI, PostgreSQL, and a vanilla JavaScript frontend.
+A full-stack expense tracker built to learn backend API design, authentication and containerized deployment using docker. Built from scratch using FastAPI, PostgreSQL, and a vanilla JavaScript frontend.
 
 **Live app:** https://pennywise-1-kinq.onrender.com
 **API docs (Swagger):** https://pennywise-jigf.onrender.com/docs
@@ -10,8 +10,8 @@ A full-stack expense tracker built to learn backend API design, authentication, 
 ## Features
 
 - Full CRUD on expenses (add, edit, delete, view)
-- Filtering by category, price range, and date range
-- Sorting by price, category, date, or amount
+- Filtering by category, price range and date range
+- Sorting by price, category, date or amount
 - Aggregate stats: total spending, expense count, spending by category, spending by date range
 - User accounts with JWT-based authentication
 - Every user's data is fully isolated — enforced at the database query level, not just hidden in the UI

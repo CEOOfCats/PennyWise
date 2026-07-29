@@ -12,8 +12,8 @@ function logout(){
 }
 
 async function popup(mode, msg){
-    const popup_box = document.getElementById("popup-box");
-    const popup_msg = document.getElementById("popup-msg");
+    const popup_box = document.getElementById("popup_box");
+    const popup_msg = document.getElementById("popup_msg");
     const confirmBtn = document.getElementById("confirm");
     const cancelBtn = document.getElementById("cancel");
 
@@ -21,8 +21,6 @@ async function popup(mode, msg){
     popup_box.style.display = "flex";
 
     return new Promise((resolve) => {
-        confirmBtn.onclick = null;
-        cancelBtn.onclick = null;
 
         if(mode === "alert"){
             confirmBtn.textContent = "OK";
@@ -317,3 +315,25 @@ async function searchDateTotal(){
     const total = data["Total Spending"];
     document.getElementById("Date_Total_Result").textContent = `Total Spending: ${data["Total Spending"] ?? 0}`;
 }
+
+// PIE CHART
+const ctx = document.getElementById('Category_Chart');
+
+  new Chart(ctx, {
+    type: 'pie',
+    data: {
+    //   labels: [...],
+      datasets: [{
+        label: 'Spending by Category',
+        // data: [...],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });

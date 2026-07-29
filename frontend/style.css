@@ -362,7 +362,7 @@ tbody .btn-edit:hover {
 }
 
 /* POP UP */
-#popup-box{
+#popup_box{
     position: fixed;
     top: 0;
     left: 0;
@@ -386,7 +386,7 @@ tbody .btn-edit:hover {
     animation: fadeIn 0.3s ease-out;
 }
 
-.popup-btns{
+.popup_btns{
     margin-top: 15px;
     display: flex;
     justify-content: center;

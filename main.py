@@ -175,14 +175,14 @@ def get_expense(expense_id : int, db : Session = Depends(get_db), current_user: 
 # STATS
 @app.get('/expenses/stats/total')
 def get_total(db : Session = Depends(get_db), current_user: db_models.db_user = Depends(get_current_user)):
-    total_spending = db.query(func.sum(db_models.db_expense.price)).filter(db_models.db_expense.user_id == current_user.id).scalar()
+    total_spending = db.query(func.sum(db_models.db_expense.price * db_models.db_expense.amount)).filter(db_models.db_expense.user_id == current_user.id).scalar()
     return {"Total Spending" : total_spending}
 
 @app.get('/expenses/stats/category')
 def category_total(category : str | None = None,
                     db : Session = Depends(get_db),
                     current_user: db_models.db_user = Depends(get_current_user)):
-    query = db.query(db_models.db_expense.category, func.sum(db_models.db_expense.price)).filter(db_models.db_expense.user_id == current_user.id)
+    query = db.query(db_models.db_expense.category, func.sum(db_models.db_expense.price * db_models.db_expense.amount)).filter(db_models.db_expense.user_id == current_user.id)
     
     if category:
         query = query.filter(db_models.db_expense.category == category)
@@ -202,7 +202,7 @@ def date_total(start_date : date | None = None,
                     end_date : date | None = None,
                     db : Session = Depends(get_db),
                     current_user: db_models.db_user = Depends(get_current_user)):
-    query = db.query(func.sum(db_models.db_expense.price)).filter(db_models.db_expense.user_id == current_user.id)
+    query = db.query(func.sum(db_models.db_expense.price * db_models.db_expense.amount)).filter(db_models.db_expense.user_id == current_user.id)
     
     if start_date:
         query = query.filter(db_models.db_expense.purchase_date >= start_date)
@@ -216,7 +216,7 @@ def date_total(start_date : date | None = None,
 
 @app.get('/expenses/stats/count')
 def expenses_count(db : Session = Depends(get_db), current_user: db_models.db_user = Depends(get_current_user)):
-    count = db.query(db_models.db_expense).filter(db_models.db_expense.user_id == current_user.id).count()
+    count = db.query(func.sum(db_models.db_expense.amount)).filter(db_models.db_expense.user_id == current_user.id).scalar()
 
     return {"Count": count}
 

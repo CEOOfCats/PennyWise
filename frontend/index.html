@@ -90,6 +90,9 @@
         Count: <span id="Expense_Count">-</span>
     </div>
 
+    <!-- PIE CHART -->
+    <canvas id="Category_Chart" style="display: none;"></canvas>
+
     <hr>
 
     <!-- ADD/EDIT + FILTER -->
@@ -142,11 +145,11 @@
         </form>
     </div>
 
-    <div id="popup-box" style="display: none;">
+    <div id="popup_box" style="display: none;">
         <div class="pop-up-box">
-            <span id="popup-msg">popup msg</span>
+            <span id="popup_msg">popup msg</span>
 
-            <div class="popup-btns">
+            <div class="popup_btns">
                 <button id="confirm"></button>
                 <button id="cancel"></button>
             </div>
@@ -154,6 +157,7 @@
         
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"> </script>
 </body>
 </html>
