@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PennyWise - Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="mobile-header">
+    <h2 style="color:var(--primary)">PennyWise</h2>
+    <button class="menu-toggle" onclick="toggleSidebar()">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>PennyWise</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item active">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+          Dashboard
+        </a>
+        <a href="expenses.html" class="nav-item">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+          Expenses
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="nav-item" onclick="logout()" style="color:var(--danger)">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+          Logout
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="page-header">
+        <h1>Dashboard</h1>
+        <p>Overview of your spending</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-header">
+            <span class="stat-label">Total Spending</span>
+            <div class="stat-icon teal">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+          </div>
+          <div class="stat-value" id="totalSpending">$0.00</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <span class="stat-label">Total Items</span>
+            <div class="stat-icon blue">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+            </div>
+          </div>
+          <div class="stat-value" id="totalCount">0</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <span class="stat-label">Avg. per Item</span>
+            <div class="stat-icon amber">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            </div>
+          </div>
+          <div class="stat-value" id="avgPerItem">$0.00</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <span class="stat-label">Categories</span>
+            <div class="stat-icon rose">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+            </div>
+          </div>
+          <div class="stat-value" id="categoryCount">0</div>
+        </div>
+      </div>
+
+      <div class="charts-grid">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Spending by Category</h3>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="categoryChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">30-Day Trend</h3>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="trendChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Quick Add</h3>
+        </div>
+        <div class="card-body">
+          <form id="quickAddForm" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;align-items:end;">
+            <div class="form-group" style="margin:0">
+              <label>Amount</label>
+              <input type="number" id="qaAmount" class="form-input" min="1" required placeholder="Qty">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label>Unit Price</label>
+              <input type="number" id="qaPrice" class="form-input" step="0.01" min="0" required placeholder="$0.00">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label>Category</label>
+              <input type="text" id="qaCategory" class="form-input" required placeholder="e.g. Food">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label>Description</label>
+              <input type="text" id="qaDesc" class="form-input" required placeholder="What did you buy?">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label>Date</label>
+              <input type="date" id="qaDate" class="form-input" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="height:46px">Add Expense</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-header">
+          <h3 class="card-title">Recent Expenses</h3>
+          <a href="expenses.html" class="btn btn-sm btn-secondary">View All</a>
+        </div>
+        <div class="card-body" style="padding:0">
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Details</th>
+                  <th>Date</th>
+                  <th>Qty × Price</th>
+                  <th class="text-right">Total</th>
+                </tr>
+              </thead>
+              <tbody id="recentTable">
+                <tr><td colspan="4" style="text-align:center;padding:40px"><div class="spinner" style="width:32px;height:32px;margin:0 auto"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
